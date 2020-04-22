@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'MySchedule.dart';
 
 class MySlider extends StatefulWidget {
 
@@ -9,15 +11,11 @@ class MySlider extends StatefulWidget {
 }
 
 class _MySliderState extends State<MySlider> {
-  double value=0;
   @override
   Widget build(BuildContext context) {
-    return Slider(value: this.value, onChanged:_changedListener);
+    final schedule=Provider.of<MySchedule>(context);
+    return Slider(value: schedule.stateManagementValue,
+        onChanged:(value)=>schedule.stateManagementValue=value,);
   }
 
-  void _changedListener(double value){
-    setState(() {
-      this.value=value;
-    });
-  }
 }
